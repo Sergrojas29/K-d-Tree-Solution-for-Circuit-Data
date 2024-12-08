@@ -1,6 +1,9 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <cmath>
+#include <cfloat>
+
 // Node K Dimensions
 #define K 2
 #define XAXIS 1
@@ -28,7 +31,26 @@ public:
     node *init_node(float x_val, float y_val);
     void insert(node *new_node);
     node *leftOrRight(node *current, node *new_node, int level); //helper function
+    void insert_data(float x_val, float y_val);
+    node *get_root();
+    float distance(node *current, float x_val, float y_val);
+    node *nearestNeighbor(float x_val, float y_val);
+    void search(node *current, int level);
 };
+
+float kdtree::distance(node *current, float x_val, float y_val)
+{
+    float lenght = x_val - current->x;
+    float height = y_val - current->y;
+    return sqrt(pow(lenght, 2) + pow(height, 2));
+}
+
+node *kdtree::get_root()
+{
+    if (*root == NULL)
+        return NULL;
+    return *root;
+}
 
 kdtree::kdtree()
 {
@@ -47,6 +69,11 @@ node *kdtree::init_node(float x_val, float y_val)
     return new_node;
 }
 
+void kdtree::insert_data(float x_val, float y_val)
+{
+    insert(init_node(x_val, y_val));
+}
+
 node *kdtree::leftOrRight(node *current, node *new_node, int level)
 {
     float current_val = (level % K == 1) ? current->x : current->y;
@@ -63,12 +90,11 @@ node *kdtree::leftOrRight(node *current, node *new_node, int level)
         }
         else
         {
-            current == current->right;
+            current = current->right;
         }
     }
     else
     {
-        //current value is SMALLER goes LEFT
         if (current->left == nullptr)
         {
             current->left = new_node;
@@ -77,13 +103,9 @@ node *kdtree::leftOrRight(node *current, node *new_node, int level)
         }
         else
         {
-            current == current->left;
+            current = current->left;
         }
     }
-
-
-    // cout << "value depending on level for current: " << current_val << endl;
-    // cout << "value depending on level for new node: " << new_val << endl;
 
     return current;
 }
@@ -94,6 +116,7 @@ void kdtree::insert(node *new_node)
     {
         *root = new_node;
         cout << "new node is new root:" << new_node->x << endl;
+        return;
     }
     else
     {
@@ -102,67 +125,46 @@ void kdtree::insert(node *new_node)
 
         while (current != nullptr)
         {
-            if (level % K == 1)
-            {
-                if (current->x < new_node->x)
-                {
-                    //! current value is LARGER goes RIGHT
-                    if (current->right == nullptr)
-                    {
-                        current->right = new_node;
-                        cout << "current right is node the new node :" << new_node->x << endl;
-                        current = nullptr;
-                    }
-                    else
-                    {
-                        current == current->right;
-                        level += 1;
-                    }
-                }
-                else
-                {
-                    //current value is SMALLER goes LEFT
-                    if (current->left == nullptr)
-                    {
-                        current->left = new_node;
-                        cout << "current left is node the new node :" << new_node->x << endl;
-                        current = nullptr;
-                    }
-                    else
-                    {
-                        current == current->left;
-                        level += 1;
-                    }
-                }
-            }
-            else
-            {
-                cout << "other" << endl;
-                current = nullptr;
-            }
+            current = leftOrRight(current, new_node, level);
+            level++; // increments the level
         }
     }
 }
 
+void kdtree::search(node *current, int level){
+    if( current == nullptr) return;// end recursive function
+
+    
+
+
+
+
+
+
+}
+
+
+node *kdtree::nearestNeighbor(float x_val, float y_val)
+{
+    node *current = get_root();
+
+    return current;
+}
+
 int main()
 {
-    vector<float> xCSV = {2587, 2603, 162, 240.5, 2814.5, 2594.5, 1456.5, 1476.5};
-    vector<float> yCSV = {-787, 50, -311, -280.5, -532.5, -680.5, -320.5, -720.5};
+    vector<float> xCSV = {25, 26, 1, 2, 28, 27, 14, 15};
+    vector<float> yCSV = {-7, 5, -3, -2, -53, -68, -32, -72};
 
     kdtree mykdtree;
-    node *p1 = mykdtree.init_node(2587, -787);
-    node *p2 = mykdtree.init_node(240.5, 50);
-    node *p3 = mykdtree.init_node(2603.5, -311);
-    node *p4 = mykdtree.init_node(2814.5, 90);
 
-    // mykdtree.insert(p1);
-    // mykdtree.insert(p2);
-    // mykdtree.insert(p3);
-    // mykdtree.insert(p4);
+    for (int i = 0; i < xCSV.size(); i++)
+    {
+        mykdtree.insert_data(xCSV[i], yCSV[i]);
+    }
 
-    mykdtree.leftOrRight(p3, p4, 2);
+    mykdtree.nearestNeighbor(16, -5);
 
-    // cout << "ALL GOOOOOOD" << endl;
 
     return 0;
 }
