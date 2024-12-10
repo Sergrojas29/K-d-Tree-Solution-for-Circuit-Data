@@ -7,6 +7,9 @@
 #include <cmath>
 #include <cfloat>
 #include <iomanip>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 // Node K Dimensions
 #define K 2
@@ -16,6 +19,9 @@
 #define UNUSED false
 
 using namespace std;
+
+
+
 
 struct node
 {
