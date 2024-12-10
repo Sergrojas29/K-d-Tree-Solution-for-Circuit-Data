@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "ostream": "cpp",
-        "iterator": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp"
     }
 }

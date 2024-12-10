@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <cfloat>
+#include <iomanip>
 
 // Node K Dimensions
 #define K 2
@@ -37,8 +38,8 @@ public:
     void insert_data(float x_val, float y_val);
     node *get_root();
     float distance(node *current, float x_val, float y_val);
-    node *nearestNeighbor(float x_val, float y_val);
-    void search(node *current, int level);
+    node *nearestNeighbor(node *current,float x_val, float y_val);
+    void search(node *current, node *&best_node, float &best_dist, float x_val, float y_val, int level = 0);
 };
 
 #endif

@@ -41,9 +41,9 @@ node *kdtree::leftOrRight(node *current, node *new_node, int level)
     float current_val = (level % K == 1) ? current->x : current->y;
     float new_val = (level % K == 1) ? new_node->x : new_node->y;
 
-    if (current_val < new_val)
+    if (current_val <= new_val)
     {
-        //! current value is LARGER goes RIGHT
+        //! current value is LARGER OR EQUAL goes RIGHT
         if (current->right == nullptr)
         {
             current->right = new_node;
@@ -93,22 +93,50 @@ void kdtree::insert(node *new_node)
     }
 }
 
-void kdtree::search(node *current, int level){
-    if( current == nullptr) return;// end recursive function
+void kdtree::search(node *current, node *&best_node, float &best_dist, float x_val, float y_val, int level)
+{
+    if (current == nullptr)
+    {
+        cout << "end recursion on level " << level << endl;
+        return;
+    }
 
-    
+    level++;
+    float new_distance = distance(current, x_val, y_val);
+
+    float nodeAxisValue = (level % K == 1) ? current->x : current->y;
+    float targetAxisValue = (level % K == 1) ? x_val : y_val;
+
+    cout << "new dist: " << new_distance << "   compared to best dist:" << best_dist << endl; // visual debug
+    best_node = (new_distance < best_dist) ? current : best_node;
+    best_dist = (new_distance < best_dist) ? new_distance : best_dist;
+
+    if (targetAxisValue >= nodeAxisValue)
+    {
+        current = current->right;
+        search(current, best_node, best_dist, x_val, y_val,level);
+    }
+    else
+    {
+        current = current->left;
+        search(current, best_node, best_dist, x_val, y_val,level);
+    }
+
+    if(fabs(targetAxisValue- nodeAxisValue)< best_dist){
+        search(current, best_node, best_dist, x_val, y_val,level); // check if the other side needs to be checked
+    }
 
 
-
-
-
-
+    return;
 }
 
-
-node *kdtree::nearestNeighbor(float x_val, float y_val)
+node *kdtree::nearestNeighbor(node *current, float x_val, float y_val)
 {
-    node *current = get_root();
+    float best_dist = FLT_MAX;
+    // float best_dist = 10000;
+    node *best_node = nullptr;
 
-    return current;
+    search(current,best_node, best_dist, x_val, y_val);
+    cout << "Best node is : " << best_node->x << ", " << best_node->y;
+    return best_node;
 }
