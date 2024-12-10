@@ -9,7 +9,7 @@
         "-std=c++17",
         "-g",
         "tests/vector_list.cpp",
-        "code/KDtree.cpp",
+        "code/KDTree.cpp",
         "-Icode",
         "-o",
         "build/test"
@@ -26,7 +26,7 @@
         "-std=c++17",
         "-g",
         "app/main.cpp",
-        "code/KDtree.cpp",
+        "code/KDTree.cpp",
         "-Icode",
         "-o",
         "build/output"
