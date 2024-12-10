@@ -76,16 +76,28 @@ int main()
 
     coordinates;
 
-    kdtree mykdtree;
-    for (auto &&i : coordinates)
-    {
-        cout << i.coor[0] << " , " << i.coor[1] << endl;
-        mykdtree.insert_data(i.coor[0], i.coor[1]);
-    }
-    node *root = mykdtree.get_root();
-    node *best = mykdtree.nearestNeighbor(root, 250.6, 200);
+    stringstream output;
 
-    cout << best->found << endl;
+    // kdtree mykdtree;
+    // for (auto &&i : coordinates)
+    // {
+    //     cout << i.coor[0] << " , " << i.coor[1] << endl;
+    //     mykdtree.insert_data(i.coor[0], i.coor[1]);
+    // }
+    // node *root = mykdtree.get_root();
+    // node *best = mykdtree.nearestNeighbor(root, 250.6, 200); // ADD RECURSIVE NEARESTNEIGHBOR
+    // float Xcoor = best->x;
+    // float Ycoor = best->y;
+
+    for (int i = 0; i < coordinates.size(); i++)
+    {
+        break;
+    }
+    
+
+
+
+    // cout << best->found << endl;
 
     return 0;
 }
