@@ -13,20 +13,13 @@
 
 using namespace std;
 
-
 int main()
 {
-
     CircuteSearch coordinates;
     coordinates.getDataFromCSV("../testData/Data-test.csv");
 
-    cout << "location :" << coordinates.searchLocation(2494.5,139.5) << endl;
-    // kdtree test = coordinates.createKDTree();
+    coordinates.OptimalCircuit(500, 600, coordinates.data.size());
 
-
-
-
-
-
+    cout << coordinates.get_OptimalCktInfo() << endl;
     return 0;
 }

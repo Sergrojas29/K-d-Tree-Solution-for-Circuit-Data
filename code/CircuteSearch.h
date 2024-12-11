@@ -39,12 +39,15 @@ class CircuteSearch
 {
 public:
     vector<Point> data;
+    stringstream OptimalCktInfo;
     CircuteSearch(){};
     ~CircuteSearch(){};
+    string get_OptimalCktInfo();
     void getDataFromCSV(string fileLocation);
     void addpoint(Point coordinate);
     void remove(float x_val, float y_val);
     int searchLocation(float x_val, float y_val);
+    void OptimalCircuit(float x_val, float y_val, int step);
     kdtree createKDTree();
 
 };

@@ -1,28 +1,28 @@
 #include "../code/KDTree.h"
+#include "../code/CircuteSearch.h"
 
 using namespace std;
 
-
 int main()
 {
+    string file_locaion;
+    float x_axis, y_axis;
+    cout << "Please enter relative file location of csv :";
+    cin >> file_locaion;
+    cout << endl <<"Please enter Panel X axis location :";
+    cin >> x_axis;
+    cout << endl <<"Please enter Panel Y axis location :";
+    cin >> y_axis;
 
-    vector<float> xCSV = {25, 26, 1, 2, 28, 27, 14, 15};
-    vector<float> yCSV = {-7, 5, -3, -2, -53, -68, -32, -72};
 
-    // vector<float> xCSV = {3, 6, 1, 5, 1};
-    // vector<float> yCSV = {3, 2, 4, 5, 1};
-    kdtree mykdtree;
+    CircuteSearch coordinates;
+    coordinates.getDataFromCSV(file_locaion);
 
-    for (int i = 0; i < xCSV.size(); i++)
-    {
-        mykdtree.insert_data(xCSV[i], yCSV[i]);
-    }
+    //Add panel to circuit string list
+    coordinates.OptimalCktInfo << "(" << x_axis << ", " << y_axis <<")";
+    coordinates.OptimalCircuit(x_axis, y_axis, coordinates.data.size());
 
-    node *root = mykdtree.get_root();
-    
-    mykdtree.nearestNeighbor(root,1,-2.5);    
-
+    cout << coordinates.get_OptimalCktInfo() << endl;
 
     return 0;
 }
-

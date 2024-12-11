@@ -27,11 +27,12 @@ int CircuteSearch::searchLocation(float x_val, float y_val)
     return 0;
 }
 
-kdtree CircuteSearch::createKDTree(){
+kdtree CircuteSearch::createKDTree()
+{
     kdtree mykdtree;
     for (auto &&i : data)
     {
-        mykdtree.insert_data(i.coor[0],i.coor[1]);
+        mykdtree.insert_data(i.coor[0], i.coor[1]);
     }
     return mykdtree;
 }
@@ -72,3 +73,29 @@ void CircuteSearch::getDataFromCSV(string fileLocation)
         line = "";
     }
 };
+
+string CircuteSearch::get_OptimalCktInfo(){
+    return OptimalCktInfo.str();
+}
+
+void CircuteSearch::OptimalCircuit(float x_val, float y_val, int step)
+{
+    if (step ==0) return; // end recurssion
+    
+
+    kdtree mykdtree = createKDTree();
+    node *root = mykdtree.get_root();
+    node *best_node = mykdtree.nearestNeighbor(root, x_val,y_val);
+    
+    //!new target
+    float tar_x = best_node->x;
+    float tar_y = best_node->y;
+
+    remove(tar_x,tar_y);
+    
+
+    OptimalCktInfo <<"(" << tar_x << ", " << tar_y << ")";
+
+    OptimalCircuit(tar_x, tar_y,--step);
+
+}
