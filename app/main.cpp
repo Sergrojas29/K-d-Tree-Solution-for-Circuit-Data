@@ -17,11 +17,12 @@ int main()
 
     CircuteSearch coordinates;
     coordinates.getDataFromCSV(file_locaion);
+    // "../testData/OVATEST.csv"
 
     //Add panel to circuit string list
-    coordinates.OptimalCktInfo << "(" << x_axis << ", " << y_axis <<")";
+    coordinates.OptimalCktInfo << "((" << x_axis << ", " << y_axis <<"),";
     coordinates.OptimalCircuit(x_axis, y_axis, coordinates.data.size());
-
+    coordinates.OptimalCktInfo << ")";
     cout << coordinates.get_OptimalCktInfo() << endl;
 
     return 0;
