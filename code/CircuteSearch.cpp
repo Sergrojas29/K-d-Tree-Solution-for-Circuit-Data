@@ -94,7 +94,7 @@ void CircuteSearch::OptimalCircuit(float x_val, float y_val, int step)
     remove(tar_x,tar_y);
     
 
-    OptimalCktInfo <<"(" << tar_x << ", " << tar_y << ")";
+    OptimalCktInfo <<"(" << tar_x << ", " << tar_y << "),";
 
     OptimalCircuit(tar_x, tar_y,--step);
 
