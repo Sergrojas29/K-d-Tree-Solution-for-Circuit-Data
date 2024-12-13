@@ -39,7 +39,7 @@ Create a solution to semi-automate the Circuit runs between strobe ckt to create
 
 </div>
 <figure style="height: 100%; display: flex; flex-direction: column; align-self: center; justify-content: center; ">
-    <img style="max-width: 600px; max-height: 400px" src="./readme/example-03.png" alt="" />
+    <img style="max-width: 600px; max-height: 400px" src="./readme/diagram-02.png" alt="" />
     <figcaption style="text-align:center">Diagram of Strobe -green-, Panel and circuit </figcaption>
 </figure>
 
