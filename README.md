@@ -9,10 +9,10 @@ Create a solution to semi-automate the Circuit runs between strobe ckt to create
 
 
 ## Demo/Explanation 
-### Part 1
+### Part 1 Video Link
 [![Watch the video](https://img.youtube.com/vi/rNsDUPJCt3I/maxresdefault.jpg)](https://youtu.be/rNsDUPJCt3I)
 
-### Part 2
+### Part 2 Video Link
 [![Watch the video](https://img.youtube.com/vi/KfRzEBi6HLI/maxresdefault.jpg)](https://youtu.be/KfRzEBi6HLI)
 
 
