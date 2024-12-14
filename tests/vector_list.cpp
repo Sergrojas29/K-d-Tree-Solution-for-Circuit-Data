@@ -1,6 +1,7 @@
 #include "../code/KDTree.h"
 #include "../code/CircuteSearch.h"
 
+
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -16,10 +17,15 @@ using namespace std;
 int main()
 {
     CircuteSearch coordinates;
-    coordinates.getDataFromCSV("../testData/Data-test.csv");
+    coordinates.getDataFromCSV("../testData/OVATEST.csv");
 
-    coordinates.OptimalCircuit(500, 600, coordinates.data.size());
+    coordinates.OptimalCircuit(45,15,1);
 
-    cout << coordinates.get_OptimalCktInfo() << endl;
+    
+
+
+
+
+    // cout << coordinates.get_OptimalCktInfo() << endl;
     return 0;
 }

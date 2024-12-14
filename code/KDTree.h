@@ -27,7 +27,7 @@ struct node
 {
     float x;
     float y;
-    bool found = UNUSED; // Should remove if not used
+    // bool found = UNUSED; // Should remove if not used
     node *left;
     node *right;
 };

@@ -138,6 +138,6 @@ node *kdtree::nearestNeighbor(node *current, float x_val, float y_val)
 
     search(current,best_node, best_dist, x_val, y_val);
     cout << "Best node is : " << best_node->x << ", " << best_node->y << endl;
-    best_node->found = USED;
+    // best_node->found = USED;
     return best_node;
 }

@@ -10,9 +10,10 @@
         "-g",
         "tests/vector_list.cpp",
         "code/KDTree.cpp",
+        "code/CircuteSearch.cpp",
         "-Icode",
         "-o",
-        "build/test"
+        "build"
       ],
       "group": "build",
       "problemMatcher": ["$gcc"],
@@ -27,6 +28,7 @@
         "-g",
         "app/main.cpp",
         "code/KDTree.cpp",
+        "code/CircuteSearch.cpp",
         "-Icode",
         "-o",
         "build/output"
